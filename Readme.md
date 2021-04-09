@@ -1,7 +1,7 @@
 # Проект «Большое путешествие»
 
 * Студент: [Дарья Банькина](https://up.htmlacademy.ru/ecmascript/14/user/432803).
-* Наставник:[Николай Думчев](https://htmlacademy.ru/profile/nikopol_fw).
+* Наставник: [Николай Думчев](https://htmlacademy.ru/profile/nikopol_fw).
 
 ---
 
