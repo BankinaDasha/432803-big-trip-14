@@ -19,7 +19,7 @@ const siteInfoTripElement = sitePageHeader.querySelector('.trip-main');
 const siteTripSortElement = sitePageMain.querySelector('.trip-events');
 const siteTripEventElement = sitePageMain.querySelector('.trip-events');
 
-render(siteInfoTripElement, createInfoTripTemplate(), 'beforeend');
+render(siteInfoTripElement, createInfoTripTemplate(), 'afterbegin');
 render(siteFilterElement, createListFilterTemplate(), 'beforeend');
 render(siteNavElement, createNavTemplate(), 'beforeend');
 render(siteTripSortElement, createTripSortTemplate(), 'beforeend');
