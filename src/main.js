@@ -18,13 +18,12 @@ const siteFilterElement = sitePageHeader.querySelector('.trip-controls__filters'
 const siteNavElement= sitePageHeader.querySelector('.trip-controls__navigation');
 const siteInfoTripElement = sitePageHeader.querySelector('.trip-main');
 const siteTripSortElement = sitePageMain.querySelector('.trip-events');
-const siteTripEventElement = sitePageMain.querySelector('.trip-events');
 
 render(siteInfoTripElement, createInfoTripTemplate(), 'afterbegin');
 render(siteFilterElement, createListFilterTemplate(), 'beforeend');
 render(siteNavElement, createNavTemplate(), 'beforeend');
 render(siteTripSortElement, createTripSortTemplate(), 'beforeend');
-render(siteTripEventElement, createEventListTemplate(),'beforeend');
+render(siteTripSortElement, createEventListTemplate(),'beforeend');
 
 const MakeListEvent = () => {
   const siteTripEvenListElement = sitePageMain.querySelector('.trip-events__list');
