@@ -2,6 +2,7 @@ import {createListFilterTemplate} from './view/list-filter.js';
 import {createNavTemplate} from './view/nav.js';
 import {createInfoTripTemplate} from './view/trip-info.js';
 import {createTripSortTemplate} from './view/trip-sort.js';
+import {createEventListTemplate} from './view/event-list.js';
 import {createTripEventTemplate} from './view/trip-event.js';
 
 const TRIP_EVENT = 3;
@@ -23,8 +24,14 @@ render(siteInfoTripElement, createInfoTripTemplate(), 'afterbegin');
 render(siteFilterElement, createListFilterTemplate(), 'beforeend');
 render(siteNavElement, createNavTemplate(), 'beforeend');
 render(siteTripSortElement, createTripSortTemplate(), 'beforeend');
+render(siteTripEventElement, createEventListTemplate(),'beforeend');
 
-for (let i = 0; i < TRIP_EVENT; i++) {
-  render(siteTripEventElement, createTripEventTemplate(), 'beforeend');
-}
+const MakeListEvent = () => {
+  const siteTripEvenListElement = sitePageMain.querySelector('.trip-events__list');
+  for (let i = 0; i < TRIP_EVENT; i++) {
+    render(siteTripEvenListElement, createTripEventTemplate(), 'beforeend');
+  }
+};
+
+MakeListEvent();
 
