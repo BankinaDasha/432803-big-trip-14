@@ -61,6 +61,18 @@ const generateOptionPrice = () => {
   return (randomIndex);
 };
 
+const generateDate = () => {
+
+  const randomYear = getRandomInteger(1990, 2021);
+  const randomM = getRandomInteger(1, 12);
+  const randomD = getRandomInteger(1, 31);
+  const randomH = getRandomInteger(1, 24);
+  const randomMin = getRandomInteger(1, 60);
+  const startDate = new Date(randomYear,randomM,randomD,randomH,randomMin);
+
+  return(startDate);
+};
+
 
 const generateEvent = () => {
   return {
@@ -70,9 +82,13 @@ const generateEvent = () => {
       typeTitle: generateTypeTitle(),
     },
     time: {
-      timeStart: getRandomInteger(0, 24),
-      timeFinish: getRandomInteger(0, 24),
+      timeStart: generateDate().getHours(),
+      timeFinish: generateDate().getHours(),
       timeOverall: getRandomInteger() - getRandomInteger(),
+    },
+    date: {
+      dateDay:generateDate().getDate(),
+      dateMonth:generateDate().toLocaleString('default', { month: 'short' }),
     },
     prise: getRandomInteger(20, 200),
     isFavorite: Boolean(getRandomInteger(0, 1)),
@@ -84,5 +100,5 @@ const generateEvent = () => {
 };
 
 
-export { generateEvent };
+export { generateEvent};
 
