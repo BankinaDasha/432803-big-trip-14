@@ -1,6 +1,5 @@
 
 export const createTripEventTemplate = (event) => {
-  console.log(event);
   const {isFavorite} = event;
   const favoriteClassName = isFavorite
     ? 'event__favorite-btn--active'
@@ -13,7 +12,7 @@ export const createTripEventTemplate = (event) => {
       <div class="event__type">
         <img class="event__type-icon" width="42" height="42" src="img/icons/${event.type.typeImg}.png" alt="Event type icon">
       </div>
-      <h3 class="event__title">${event.type.typeTitle}</h3>
+      <h3 class="event__title">${event.type.typeImg} ${event.type.typeTitle}</h3>
       <div class="event__schedule">
         <p class="event__time">
           <time class="event__start-time" datetime="2019-03-18T10:30">10:30</time>
