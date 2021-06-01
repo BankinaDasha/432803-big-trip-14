@@ -1,7 +1,7 @@
 
 export const createTripEventTemplate = (event) => {
-  const {isFavorite} = event;
-  const favoriteClassName = isFavorite
+  const {is_favorite} = event;
+  const favoriteClassName = is_favorite
     ? 'event__favorite-btn--active'
     : '';
 
@@ -10,9 +10,9 @@ export const createTripEventTemplate = (event) => {
     <div class="event">
       <time class="event__date" datetime="2019-03-18">${event.date.dateMonth} ${event.date.dateDay}</time>
       <div class="event__type">
-        <img class="event__type-icon" width="42" height="42" src="img/icons/${event.type.typeImg}.png" alt="Event type icon">
+        <img class="event__type-icon" width="42" height="42" src="img/icons/${event.type}.png" alt="Event type icon">
       </div>
-      <h3 class="event__title">${event.type.typeImg} ${event.type.typeTitle}</h3>
+      <h3 class="event__title">${event.type} ${event.description.name}</h3>
       <div class="event__schedule">
         <p class="event__time">
           <time class="event__start-time" datetime="2019-03-18T10:30">10:30</time>
@@ -22,14 +22,14 @@ export const createTripEventTemplate = (event) => {
         <p class="event__duration">30M</p>
       </div>
       <p class="event__price">
-        &euro;&nbsp;<span class="event__price-value">${event.prise}</span>
+        &euro;&nbsp;<span class="event__price-value">${event.base_price}</span>
       </p>
       <h4 class="visually-hidden">Offers:</h4>
       <ul class="event__selected-offers">
         <li class="event__offer">
-          <span class="event__offer-title">${event.options.optionsTitle}</span>
+          <span class="event__offer-title">${event.offers.title}</span>
           &plus;&euro;&nbsp;
-          <span class="event__offer-price">${event.options.optionsPrice}</span>
+          <span class="event__offer-price">${event.offers.price}</span>
         </li>
       </ul>
       <button class="event__favorite-btn ${favoriteClassName}" type="button">

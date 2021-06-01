@@ -4,60 +4,61 @@ const getRandomInteger = (a = 0, b = 1) => {
   return Math.floor(lower + Math.random() * (upper - lower + 1));
 };
 
-
-const generateTypeImg = () => {
-  const TYPE = [
-    'Taxi',
-    'Bus',
-    'Train',
-    'Ship',
-    'Transport',
-    'Drive',
-    'Flight',
-    'Check-in',
-    'Restaurant',
-  ];
-
-  const randomIndex = getRandomInteger(0, TYPE.length - 1);
-
-  return (TYPE[randomIndex]);
+const TYPE = {
+  TAXI:'Taxi',
+  BUS:'Bus',
+  TRAIN:'Train',
+  SHOP:'Ship',
+  TRANSPORT:'Transport',
+  DRIVE:'Drive',
+  FLIGHT:'Flight',
+  CHECK:'Check-in',
+  RESTAURANT:'Restaurant',
 };
 
-const generateTypeTitle = () => {
-  const CITY = [
-    'Париж',
-    'Москва',
-    'Токио',
-    'Мадрид',
-    'Рим',
-    'Дубай',
-    'Сингапур',
-    'Барселона',
-  ];
+const CITY = [
+  'Париж',
+  'Москва',
+  'Токио',
+  'Мадрид',
+  'Рим',
+  'Дубай',
+  'Сингапур',
+  'Барселона',
+];
 
+const OFFERS = [
+  'Кофе',
+  'Wi-fi',
+  'Чай',
+  'Тортик',
+  'Кэшбек',
+];
+
+
+const types = Object.values(TYPE);
+const offers = Object.values(OFFERS);
+
+const generateTypeImg = () => {
+  const randomIndex = getRandomInteger(0, types.length - 1);
+  return (types[randomIndex]);
+};
+
+const generateCity = () => {
   const randomIndex = getRandomInteger(0, CITY.length - 1);
-
   return (CITY[randomIndex]);
 };
 
 const generateOption = () => {
-  const OPTIONS = [
-    'Кофе',
-    'Wi-fi',
-    'Чай',
-    'Тортик',
-    'Кэшбек',
-  ];
+  const offerValues = Object.values(OFFERS);
+  // console.log(offerKey);
+  const randomIndex = getRandomInteger(0, offerValues.length - 1);
 
-  const randomIndex = getRandomInteger(0, OPTIONS.length - 1);
-
-  return (OPTIONS[randomIndex]);
+  return (offerValues[randomIndex]);
 };
 
 const generateOptionPrice = () => {
-
   const randomIndex = getRandomInteger(20, 200);
-
   return (randomIndex);
 };
 
@@ -109,10 +110,7 @@ const genetateDescriptionImg = () => {
 
 const generateEvent = () => {
   return {
-    type: {
-      typeImg: generateTypeImg(),
-      typeTitle: generateTypeTitle(),
-    },
+    type: generateTypeImg(),
     time: {
       timeStart: generateDate().getHours(),
       timeFinish: generateDate().getHours(),
@@ -122,16 +120,19 @@ const generateEvent = () => {
       dateDay: generateDate().getDate(),
       dateMonth: generateDate().toLocaleString('default', { month: 'short' }),
     },
-    prise: getRandomInteger(20, 200),
-    isFavorite: Boolean(getRandomInteger(0, 1)),
-    options: {
-      optionsTitle: generateOption(),
-      optionsPrice: generateOptionPrice(),
+    base_price: getRandomInteger(20, 200),
+    is_favorite: Boolean(getRandomInteger(0, 1)),
+    offers: {
+      title: generateOption(),
+      price: generateOptionPrice(),
     },
-    descrioption: genetateDescription(),
-    descriptionImg: genetateDescriptionImg(),
+    description:{
+      description: genetateDescription(),
+      name: generateCity(),
+      pictures: genetateDescriptionImg(),
+    },
   };
 };
 
-export { generateEvent };
+export { generateEvent, types, offers, generateOptionPrice, getRandomInteger};
 
