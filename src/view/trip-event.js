@@ -1,5 +1,6 @@
+import {createElement} from '../utils.js';
 
-export const createTripEventTemplate = (event) => {
+const createTripEventTemplate = (event) => {
   const {is_favorite} = event;
   const favoriteClassName = is_favorite
     ? 'event__favorite-btn--active'
@@ -46,3 +47,26 @@ export const createTripEventTemplate = (event) => {
   </li>`
   );
 };
+
+export default class TripEvent {
+  constructor(event) {
+    this._event = event;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createTripEventTemplate(this._event);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

@@ -51,7 +51,6 @@ const generateCity = () => {
 
 const generateOption = () => {
   const offerValues = Object.values(OFFERS);
-  // console.log(offerKey);
   const randomIndex = getRandomInteger(0, offerValues.length - 1);
 
   return (offerValues[randomIndex]);
