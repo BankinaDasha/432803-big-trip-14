@@ -5,8 +5,8 @@ import TripSort from './view/trip-sort.js';
 import EventList from './view/event-list.js';
 import TripEvent from './view/trip-event.js';
 import NewEvent from './view/add-event.js';
-import {generateEvent} from './data.js';
-import {renderElement, RenderPosition} from './utils.js';
+import { generateEvent } from './data.js';
+import { renderElement, RenderPosition } from './utils.js';
 
 
 const TRIP_EVENT = 20;
@@ -16,11 +16,12 @@ const events = new Array(TRIP_EVENT).fill().map(generateEvent);
 const sitePageHeader = document.querySelector('.page-header');
 const sitePageMain = document.querySelector('.page-main');
 const siteFilterElement = sitePageHeader.querySelector('.trip-controls__filters');
-const siteNavElement= sitePageHeader.querySelector('.trip-controls__navigation');
+const siteNavElement = sitePageHeader.querySelector('.trip-controls__navigation');
 const siteInfoTripElement = sitePageHeader.querySelector('.trip-main');
 const siteTripSortElement = sitePageMain.querySelector('.trip-events');
 
 const renderEvent = (eventListElement, event) => {
+
   const eventComponent = new TripEvent(event);
   const eventEditComponent = new NewEvent(event);
 
@@ -32,11 +33,17 @@ const renderEvent = (eventListElement, event) => {
     eventListElement.replaceChild(eventComponent.getElement(), eventEditComponent.getElement());
   };
 
-  eventComponent.getElement().querySelector('.event__rollup-btn').addEventListener('click', () => {
+  eventComponent.getElement().querySelector('.event__rollup-btn').addEventListener('click', (evt) => {
+    evt.preventDefault();
     replaceCardToForm();
   });
 
-  eventEditComponent.getElement().querySelector('form').addEventListener('submit', (evt) => {
+  eventEditComponent.getElement().querySelector('.event__save-btn').addEventListener('click', (evt) => {
+    evt.preventDefault();
+    replaceFormToCard();
+  });
+
+  eventEditComponent.getElement().querySelector('.event__reset-btn').addEventListener('click', (evt) => {
     evt.preventDefault();
     replaceFormToCard();
   });
@@ -51,10 +58,9 @@ renderElement(siteTripSortElement, new TripSort().getElement(), RenderPosition.B
 // renderElement(siteTripSortElement, new EventList().getElement(), RenderPosition.BEFOREEND);
 
 
-const eventListComponent =  new EventList();
+const eventListComponent = new EventList();
 renderElement(siteTripSortElement, eventListComponent.getElement(), RenderPosition.BEFOREEND);
-
 for (let i = 0; i < TRIP_EVENT; i++) {
-  renderEvent(eventListComponent, new TripEvent(events[i]).getElement(), RenderPosition.BEFOREEND);
+  renderEvent(eventListComponent.getElement(), events[i]);
 }
 

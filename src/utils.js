@@ -1,5 +1,3 @@
-import {cityList, eventPoint} from './data.js';
-
 export const RenderPosition = {
   AFTERBEGIN: 'afterbegin',
   BEFOREEND: 'beforeend',
