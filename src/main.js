@@ -55,12 +55,9 @@ renderElement(siteInfoTripElement, new InfoTrip().getElement(), RenderPosition.A
 renderElement(siteNavElement, new SiteNavView().getElement(), RenderPosition.BEFOREEND);
 renderElement(siteFilterElement, new ListFilter().getElement(), RenderPosition.AFTERBEGIN);
 renderElement(siteTripSortElement, new TripSort().getElement(), RenderPosition.BEFOREEND);
-// renderElement(siteTripSortElement, new EventList().getElement(), RenderPosition.BEFOREEND);
-
 
 const eventListComponent = new EventList();
 renderElement(siteTripSortElement, eventListComponent.getElement(), RenderPosition.BEFOREEND);
 for (let i = 0; i < TRIP_EVENT; i++) {
   renderEvent(eventListComponent.getElement(), events[i]);
 }
-

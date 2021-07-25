@@ -5,15 +5,15 @@ const getRandomInteger = (a = 0, b = 1) => {
 };
 
 const TYPE = {
-  TAXI:'Taxi',
-  BUS:'Bus',
-  TRAIN:'Train',
-  SHOP:'Ship',
-  TRANSPORT:'Transport',
-  DRIVE:'Drive',
-  FLIGHT:'Flight',
-  CHECK:'Check-in',
-  RESTAURANT:'Restaurant',
+  TAXI: 'Taxi',
+  BUS: 'Bus',
+  TRAIN: 'Train',
+  SHOP: 'Ship',
+  TRANSPORT: 'Transport',
+  DRIVE: 'Drive',
+  FLIGHT: 'Flight',
+  CHECK: 'Check-in',
+  RESTAURANT: 'Restaurant',
 };
 
 const CITY = [
@@ -108,6 +108,18 @@ const genetateDescriptionImg = () => {
 };
 
 const generateEvent = () => {
+  const randomIndex = getRandomInteger(1, 5);
+  const offers = [];
+
+  for (let i = 0; i < randomIndex; i++) {
+    const offer = {
+      title: generateOption(),
+      price: generateOptionPrice(),
+    };
+
+    offers.push(offer);
+  }
+
   return {
     type: generateTypeImg(),
     time: {
@@ -121,11 +133,8 @@ const generateEvent = () => {
     },
     base_price: getRandomInteger(20, 200),
     is_favorite: Boolean(getRandomInteger(0, 1)),
-    offers: {
-      title: generateOption(),
-      price: generateOptionPrice(),
-    },
-    description:{
+    offers: offers,
+    description: {
       description: genetateDescription(),
       name: generateCity(),
       pictures: genetateDescriptionImg(),
@@ -133,5 +142,5 @@ const generateEvent = () => {
   };
 };
 
-export { generateEvent, types, offers, generateOptionPrice, getRandomInteger};
+export { generateEvent, types, offers, generateOptionPrice, getRandomInteger };
 

@@ -1,5 +1,5 @@
-import { offers, types, generateOptionPrice, getRandomInteger } from '../../src/data.js';
-import {createElement} from '../utils.js';
+import { types } from '../../src/data.js';
+import { createElement } from '../utils.js';
 
 const createEventTypeTemplate = types.map((type) => {
   const typeToLowerCase = type.toLowerCase();
@@ -10,25 +10,21 @@ const createEventTypeTemplate = types.map((type) => {
 `);
 }).join('');
 
-const offersList = offers.slice(getRandomInteger(0, offers.length - 1));
-
-const createEventOfferTemplate = offersList.map((offer) => {
-  const price = generateOptionPrice();
-  return (`
-    <div class="event__offer-selector">
-    <input class="event__offer-checkbox  visually-hidden" id="event-offer-train-1" type="checkbox" name="event-offer-train">
-    <label class="event__offer-label" for="event-offer-train-1">
-    <span class="event__offer-title">${offer}</span>
-     &plus;&euro;&nbsp;
-    <span class="event__offer-price">${price}</span>
-    </label>
-    </div>
-  `);
-}).join('');
-
 
 const createNewEventTemplate = (event = {}) => {
 
+  const createEventOfferTemplate = event.offers.map((offer) => {
+    return (`
+    <div class="event__offer-selector">
+    <input class="event__offer-checkbox  visually-hidden" id="event-offer-train-1" type="checkbox" name="event-offer-train">
+    <label class="event__offer-label" for="event-offer-train-1">
+    <span class="event__offer-title">${offer.title}</span>
+     &plus;&euro;&nbsp;
+    <span class="event__offer-price">${offer.price}</span>
+     </label>
+     </div>
+  `);
+  }).join('');
 
   return (
     `<form class="event event--edit" action="#" method="post">

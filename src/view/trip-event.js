@@ -1,10 +1,20 @@
-import {createElement} from '../utils.js';
+import { createElement } from '../utils.js';
 
 const createTripEventTemplate = (event) => {
-  const {is_favorite} = event;
+  const { is_favorite } = event;
   const favoriteClassName = is_favorite
     ? 'event__favorite-btn--active'
     : '';
+
+  const createEventOfferTemplate = event.offers.map((offer) => {
+    return (`
+       <li class="event__offer">
+          <span class="event__offer-title">${offer.title}</span>
+          &plus;&euro;&nbsp;
+          <span class="event__offer-price">${offer.price}</span>
+        </li>
+    `);
+  }).join('');
 
   return (
     `<li class="trip-events__item">
@@ -27,11 +37,7 @@ const createTripEventTemplate = (event) => {
       </p>
       <h4 class="visually-hidden">Offers:</h4>
       <ul class="event__selected-offers">
-        <li class="event__offer">
-          <span class="event__offer-title">${event.offers.title}</span>
-          &plus;&euro;&nbsp;
-          <span class="event__offer-price">${event.offers.price}</span>
-        </li>
+      ${createEventOfferTemplate}
       </ul>
       <button class="event__favorite-btn ${favoriteClassName}" type="button">
         <span class="visually-hidden">Add to favorite</span>
